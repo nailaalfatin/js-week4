@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+</head>
+<style>
+    #container {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+
+    #door {
+        width: 200px;
+        height: 400px;
+        background-color: paleturquoise;
+        position: relative;
+        transition: transform 1s;
+        transform-origin: left center;
+    }
+
+    #button {
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <div id="container">
+        <div id="door"></div>
+        <button id="button">buka/tutup</button>
+    </div>
+</body>
+
+<script src="MyScript2.js"></script>
+</html>

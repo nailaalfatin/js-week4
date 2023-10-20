@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- 
+    This sendirian
+    Jika digunakan sendiri, thismengacu pada objek global .
+    Karena this berjalan dalam lingkup global.
+    Di jendela browser, objek globalnya adalah [object Window]:
+ -->
+ 
+    <p id="demo"></p>
+
+    <script>
+      let x = this;
+      document.getElementById("demo").innerHTML = x;
+    </script>
+  </body>
+</html>

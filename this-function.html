@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- 
+    Dalam suatu fungsi, objek global adalah pengikatan default untuk this.
+    Di jendela browser, objek globalnya adalah [object Window]:
+ -->
+    <p id="demo"></p>
+
+    <script>
+      document.getElementById("demo").innerHTML = myFunction();
+
+      function myFunction() {
+        return this;
+      }
+    </script>
+  </body>
+</html>

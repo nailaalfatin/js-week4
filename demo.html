@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+  </head>
+  <body>
+    <div id="main">
+      <p>ini paragraf pertama</p>
+      <p>ini paragraf kedua</p>
+    </div>
+
+    <p id="panggil"></p>
+
+    <script>
+        // ini kalo pake tag <p> doang
+    //   const element = document.getElementsByTagName("p");
+
+    //   document.getElementById("panggil").innerHTML =
+    //     "ini adalah isi dari tag yang dipanggil : " + element[0].innerHTML;
+
+
+    // ini kalo dia didalem <div>
+    const x = document.getElementById("main")
+    const y = x.getElementsByTagName("p")
+
+    document.getElementById("panggil").innerHTML = 
+    "Paragraf pertama adalah : " + y[0].innerHTML;
+    </script>
+  </body>
+</html>

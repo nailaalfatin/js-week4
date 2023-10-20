@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      DOM Navigation melibatkan navigasi antar elemen dalam DOM,
+      seperti mencari parent, sibling, atau child nodes dari suatu elemen.
+     -->
+    <h1>Daftar Situs Web</h1>
+    <ul>
+      <li><a href="https://www.google.com" target="_blank">Google</a></li>
+      <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+      <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+    </ul>
+
+    <script>
+      // Mendapatkan semua elemen tautan (a) dalam daftar
+      const daftarTautan = document.querySelectorAll("ul li a");
+
+      // Menambahkan event listener ke setiap tautan
+      daftarTautan.forEach((tautan) => {
+        tautan.addEventListener("click", (e) => {
+          e.preventDefault(); // Mencegah tautan mengarahkan halaman ke situs web yang dituju
+          const url = tautan.getAttribute("href"); // Mendapatkan URL dari tautan
+          window.open(url, "_blank"); // Membuka situs web dalam tab atau jendela baru
+        });
+      });
+    </script>
+  </body>
+</html>

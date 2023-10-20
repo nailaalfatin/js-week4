@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Informasi Surat Al-Quran</h1>
+    <button onclick="getData()">Ambil Data</button>
+    <div id="result"></div>
+
+    <script>
+        function getData() {
+            var surah = new XMLHttpRequest();
+            surah.open(
+                "GET", //method get untuk mendapatkan data dr backend
+                "https://api.banghasan.com/quran/format/json/surat",
+                true //untuk memebenarkan klo ini semua itu bener
+            );
+            surah.onreadystatechange = function() {
+                if (surah.readyState === 4  && surah.status === 200) { //4 itu kode, && itu artinya benar (true)
+                    var respons = JSON.parse(surah.responseText);
+                    displayData(respons);
+                }
+            }
+            surah.send();
+        }
+
+        function displayData(data) {
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = ""; // kenapa string kosong? buat diisi sm data yg dr API
+
+            data.hasil.forEach(function (suratt) { // hasil itu dapet dr API, forEach itu buat pengulangan
+                var surattDiv = document.createElement("div");
+                surattDiv.classList.add("suratt");
+
+                var namaSurat = document.createElement("h2");
+                namaSurat.textContent = "Nama Surat : " + suratt.nama; // nama itu dapet dr API
+
+                var namaArab = document.createElement("h3");
+                namaArab.textContent = "Asma Surat : " + suratt.asma; 
+
+                var namaType = document.createElement("h4");
+                namaType.textContent = "Type Surat : " + suratt.type; 
+
+                var namaAyat = document.createElement("h4");
+                namaAyat.textContent = "Jumlah Ayat : " + suratt.ayat; 
+
+                var namaArti = document.createElement("h4");
+                namaArti.textContent = "Arti Surat : " + suratt.arti; 
+
+                surattDiv.appendChild(namaSurat);
+                surattDiv.appendChild(namaArab);
+                surattDiv.appendChild(namaType);
+                surattDiv.appendChild(namaAyat);
+                surattDiv.appendChild(namaArti);
+                
+                resultDiv.appendChild(surattDiv);
+            })
+        }
+    </script>
+</body>
+</html>

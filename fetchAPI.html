@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informasi Surat</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300;1,400&display=swap">
+  </head>
+  <body>
+    <h1 class="judul">Informasi Surat</h1>
+
+    <div id="result"></div>
+
+    <style>
+      html {
+        background: #fef9f6;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .judul{
+        color: #B0578D;
+        text-align: center;
+        justify-content: center;
+        font-weight: 10rem;
+
+      }
+
+      .nama-surat{
+        margin-top: 5rem;
+      }
+
+    </style>
+
+    <script>
+      window.onload = function () {
+        getData();
+      };
+
+      function getData() {
+        // ini adalah kode permintaan ke server API
+        fetch("https://api.banghasan.com/quran/format/json/surat")
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Gagal mengambil data");
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            displayData(data);
+          })
+          .catch(function (error) {
+            console.log("Terjadi kesalahan", error);
+          });
+      }  
+
+      function displayData(data) {
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "";
+
+        data.hasil.forEach(function (surat) {
+          var suratDiv = document.createElement("div");
+          suratDiv.classList.add("surah");
+
+          //Nama surat
+          var namaSurah = document.createElement("h2");
+          namaSurah.className = "nama-surat";
+          namaSurah.textContent = surat.nama;
+
+          //Nama asma
+          var namaAsma = document.createElement("p");
+          namaAsma.className = "asma";
+          namaAsma.textContent = surat.asma;
+
+          //Nama type
+          var namaType = document.createElement("p");
+          namaType.className = "type";
+          namaType.textContent = "Diturunkan di " + surat.type;
+
+          //Nama arti
+          var namaArti = document.createElement("p");
+          namaArti.className = "arti";
+          namaArti.textContent = "Arti : " + surat.arti;
+
+          suratDiv.appendChild(namaSurah);
+          suratDiv.appendChild(namaAsma);
+          suratDiv.appendChild(namaType);
+          suratDiv.appendChild(namaArti);
+
+          resultDiv.appendChild(suratDiv);
+        });
+      }
+    </script>
+  </body>
+</html>

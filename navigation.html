@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigasi</title>
+  </head>
+  <body>
+    <!-- 
+        DOM Navigation melibatkan navigasi antar elemen dalam DOM, 
+        seperti mencari parent, sibling, atau chlid nodes dari suatu elemen
+     -->
+
+    <h1>Daftar Situs Web</h1>
+    <ul>
+      <li><a href="https://www.figma.com" target="_blank"></a>Figma</li>
+      <li><a href="https://www.google.com" target="_blank"></a>Google</li>
+      <li><a href="https://www.dribbble.com" target="_blank"></a>Dribbble</li>
+    </ul>
+
+    <script>
+        const daftarURL = document.querySelectorAll("ul li a");
+
+        daftarURL.forEach((tautan) => {
+            tautan.addEventListener("click", (e) => {
+                e.preventDefault();
+                const url = tautan.getAttribute("href");
+                window.open(url, "_blank");
+            })
+        });
+    </script>
+  </body>
+</html>
